@@ -10,6 +10,17 @@ RUN apt upgrade -y
 # install build tools and git
 RUN apt install git build-essential -y
 
+# build cmake from source
+WORKDIR /home/fslart
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.28.0-rc5/cmake-3.28.0-rc5.tar.gz
+RUN tar -xvf cmake-3.28.0-rc5.tar.gz
+WORKDIR /home/fslart/cmake-3.28.0-rc5
+RUN ./bootstrap
+RUN make -j8
+RUN make install
+WORKDIR /home/fslart
+RUN rm -rf /home/fslart/cmake-3.28.0-rc5.tar.gz
+
 # copy this source to the container
 RUN mkdir -p /home/fslart/example
 COPY . /home/fslart/example
