@@ -32,7 +32,7 @@ RUN make -j8
 RUN make install
 
 # build and run the daemon
-WORKDIR /home/fslart/example
+WORKDIR /home/fslart
 RUN git clone https://github.com/FSLART/CARnary_server.git
 WORKDIR /home/fslart/CARnary_server/build
 RUN cmake ..
