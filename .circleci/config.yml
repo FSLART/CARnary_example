@@ -5,36 +5,18 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  install-carnary-lib:
-    machine:
-      image: ubuntu-2204:2023.10.1
-    steps:
-      - run: git clone https://github.com/FSLART/CARnary_lib.git
-      - run: ls -la
-      - run: cd CARnary_lib && mkdir build && cd build
-      - run: cmake ..
-      - run: make -j8
-      - run: sudo make install
   build:
     machine:
       image: ubuntu-2204:2023.10.1
     steps:
       - checkout
-      - run: mkdir build && cd build
-      - run: cmake ..
-      - run: make -j8
-  run-server:
+      - run: docker build -t carnary_example .
+  run:
     machine:
       image: ubuntu-2204:2023.10.1
     steps:
       - checkout
-      - run: ./build/server
-  run-client:
-    machine:
-      image: ubuntu-2204:2023.10.1
-    steps:
-      - checkout
-      - run: ./build/client
+      - run: docker run -d carnary_example
   
 
 
@@ -43,7 +25,5 @@ jobs:
 workflows:
   build-and-run:
     jobs:
-      - install-carnary-lib
       - build
-      - run-server
-      - run-client
+      - run
