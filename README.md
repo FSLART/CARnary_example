@@ -1,5 +1,7 @@
 # CARnary Example
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/5wwKB16kU4eJ3dFAgEuyHA/2bmxSSWucLQtCkBsNoVU6c/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/5wwKB16kU4eJ3dFAgEuyHA/2bmxSSWucLQtCkBsNoVU6c/tree/main)
+
 Example toy project composed of a client and a server using CARnary. This is intended to assure easily that it is working as expected, as well as to provide reference.
 
 ## Requirements
