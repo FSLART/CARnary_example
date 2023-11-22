@@ -10,6 +10,7 @@ jobs:
       image: ubuntu-2204:2023.10.1
     steps:
       - run: git clone https://github.com/FSLART/CARnary_lib.git
+      - run: ls -la
       - run: cd CARnary_lib && mkdir build && cd build
       - run: cmake ..
       - run: make -j8
