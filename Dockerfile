@@ -32,7 +32,7 @@ RUN make -j8
 RUN make install
 
 # build and run the daemon
-WORKDIR /home/fslart/
+WORKDIR /home/fslart/example
 RUN git clone https://github.com/FSLART/CARnary_server.git
 WORKDIR /home/fslart/CARnary_server/build
 RUN cmake ..
@@ -47,5 +47,5 @@ WORKDIR /home/fslart/example/build
 RUN cmake ..
 RUN make -j8
 
-# TODO: create an entrypoint script to start the server and then the client
+ENTRYPOINT [ "entrypoint.sh" ]
 
