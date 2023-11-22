@@ -21,10 +21,6 @@ RUN make install
 WORKDIR /home/fslart
 RUN rm -rf /home/fslart/cmake-3.28.0-rc5.tar.gz
 
-# copy this source to the container
-RUN mkdir -p /home/fslart/example
-COPY . /home/fslart/example
-
 # install CARnary_lib
 # first clone it
 WORKDIR /temp/
@@ -34,6 +30,17 @@ WORKDIR /temp/CARnary_lib/build
 RUN cmake ..
 RUN make -j8
 RUN make install
+
+# build and run the daemon
+WORKDIR /home/fslart/
+RUN git clone https://github.com/FSLART/CARnary_server.git
+WORKDIR /home/fslart/CARnary_server/build
+RUN cmake ..
+RUN make -j8
+
+# copy this source to the container
+RUN mkdir -p /home/fslart/example
+COPY . /home/fslart/example
 
 # now build this project
 WORKDIR /home/fslart/example/build
