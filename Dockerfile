@@ -8,7 +8,7 @@ RUN apt update
 RUN apt upgrade -y
 
 # install build tools and git
-RUN apt install git build-essential -y
+RUN apt install git build-essential wget -y
 
 # build cmake from source
 WORKDIR /home/fslart
