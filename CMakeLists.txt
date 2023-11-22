@@ -11,9 +11,7 @@ include_directories(include ${CARnary_lib_INCLUDE_DIRS})
 
 # create the executables
 add_executable(client_example src/client.cpp)
-add_executable(server_example src/server.cpp)
 
 # link the executables to the carnary library
 target_link_libraries(client_example CARnary_lib)
-target_link_libraries(server_example CARnary_lib)
 
